@@ -81,7 +81,7 @@ def srcpath(src):
 
 def getpath(src, tp, veh):
 
-    @st.cache
+    @st.cache_data
     def lay(src, tp, veh):
         layers = []
         df=df0.query(f"`src`=={src}").query(f"`type`=={tp}").query(f"`veh`=={veh}")
@@ -162,7 +162,12 @@ def fullpath():
 
     st.pydeck_chart(pdk.Deck(
         map_style="mapbox://styles/mapbox/light-v9",
-        initial_view_state={"latitude": 48.8566, "longitude": 2.3522, "zoom": 7, "pitch": 0},
+        initial_view_state={
+    "latitude": 19.0760,
+    "longitude": 72.8777,
+    "zoom": 10,
+    "pitch": 30
+},
         layers=lay(),
     ))
 
@@ -223,12 +228,17 @@ def overview():
 
     st.pydeck_chart(pdk.Deck(
         map_style="mapbox://styles/mapbox/light-v9",
-        initial_view_state={"latitude": 48.8566, "longitude": 2.3522, "zoom": 7, "pitch": 40},
+        initial_view_state={
+    "latitude": 19.0760,
+    "longitude": 72.8777,
+    "zoom": 10,
+    "pitch": 30
+},
         layers=lay(),
     ))
 
 
-@st.cache
+@st.cache_data
 def getdf():
     df = pd.read_json('srcdf.json')
     df['icon_data'] = None
