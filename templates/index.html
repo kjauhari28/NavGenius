@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RouteAI</title>
+</head>
+<body>
+  <h1>Welcome to RouteAI</h1>
+  <button onclick="runModel()">Generate Route</button>
+  <p id="status"></p>
+
+  <script>
+    function runModel() {
+      fetch('/run-model')
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById('status').innerText = data.status;
+        })
+        .catch(err => {
+          document.getElementById('status').innerText = 'Error running model!';
+          console.error(err);
+        });
+    }
+  </script>
+</body>
+</html>
